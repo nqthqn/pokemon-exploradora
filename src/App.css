@@ -1,38 +1,78 @@
+body {
+  background-color: lightcoral;
+}
 .App {
+  max-width: 1024px;
+  margin: auto;
+  padding: .5em;
+  background-color: white;
+}
+
+h1 {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button {
+  cursor: pointer;
+}
+input, select {
+  font-size: x-large;
+  width: 200px;
+  padding: 8px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.filters {
+  background-color: rgb(189, 240, 138);
+  border-radius: 10px;
+  margin: .5em;
+  padding: .5em;
+  display: grid;
+  grid-template-columns: auto auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.input {
+  display: grid;
+  gap: 5px;
+  font-weight: bold;
+  margin-bottom: 16px;
 }
 
-.App-link {
-  color: #61dafb;
+td, th {
+  padding: 5px; 
+  text-align: left;
 }
 
-@keyframes App-logo-spin {
+tr:nth-child(even) {
+  background: lightblue;
+}
+
+table {
+  width: 100%;
+}
+
+.activeCell {
+  background: rgb(131, 213, 195);
+}
+
+.spinner {
+  border-radius: 100%;
+  border: 3px solid black;
+  border-top-color: transparent;
+  width: 100px;
+  height: 100px;
+  animation-name: spin;
+  animation-duration: 500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; 
+  margin: auto;
+
+}
+
+@keyframes spin {
   from {
-    transform: rotate(0deg);
+      transform:rotate(0deg);
   }
   to {
-    transform: rotate(360deg);
+      transform:rotate(360deg);
   }
 }
