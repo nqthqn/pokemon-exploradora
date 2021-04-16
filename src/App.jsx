@@ -11,31 +11,11 @@ const useStore = create((set) => ({
   sortBy: "Attack",
   typeFilter: "",
   loading: true,
-  setLoading: (loading) =>
-    set((state) => ({
-      ...state,
-      loading,
-    })),
-  setFilter: (filter) =>
-    set((state) => ({
-      ...state,
-      filter,
-    })),
-  setTypeFilter: (typeFilter) =>
-    set((state) => ({
-      ...state,
-      typeFilter,
-    })),
-  setPokemon: (pokemon) =>
-    set((state) => ({
-      ...state,
-      pokemon,
-    })),
-  setSortBy: (sortBy) =>
-    set((state) => ({
-      ...state,
-      sortBy,
-    })),
+  setLoading: (loading) => set((state) => ({ ...state, loading })),
+  setFilter: (filter) => set((state) => ({ ...state, filter })),
+  setTypeFilter: (typeFilter) => set((state) => ({ ...state, typeFilter })),
+  setPokemon: (pokemon) => set((state) => ({ ...state, pokemon })),
+  setSortBy: (sortBy) => set((state) => ({ ...state, sortBy })),
 }));
 
 const FilterInput = () => {
@@ -47,18 +27,6 @@ const FilterInput = () => {
       <input value={filter} onChange={(evt) => setFilter(evt.target.value)} />
     </label>
   );
-};
-
-const alphabeticalSort = (a, b) => {
-  const A = a.name.english.toUpperCase();
-  const B = b.name.english.toUpperCase();
-  if (A < B) {
-    return -1;
-  }
-  if (A > B) {
-    return 1;
-  }
-  return 0;
 };
 
 const baseValueSort = (k) => (a, b) => {
@@ -97,9 +65,7 @@ const PokemonTable = () => {
   const setSortBy = useStore((state) => state.setSortBy);
 
   if (loading) {
-    return (
-      <div class="spinner"></div>
-    );
+    return <div class="spinner"></div>;
   }
 
   return (
@@ -147,20 +113,20 @@ const PokemonTable = () => {
               <td>{japanese}</td>
               <td>{type.join(", ")}</td>
 
-              <td class={sortBy == "HP" ? "activeCell" : ""}>{base["HP"]}</td>
-              <td class={sortBy == "Attack" ? "activeCell" : ""}>
+              <td class={sortBy === "HP" ? "activeCell" : ""}>{base["HP"]}</td>
+              <td class={sortBy === "Attack" ? "activeCell" : ""}>
                 {base["Attack"]}
               </td>
-              <td class={sortBy == "Defense" ? "activeCell" : ""}>
+              <td class={sortBy === "Defense" ? "activeCell" : ""}>
                 {base["Defense"]}
               </td>
-              <td class={sortBy == "Sp. Attack" ? "activeCell" : ""}>
+              <td class={sortBy === "Sp. Attack" ? "activeCell" : ""}>
                 {base["Sp. Attack"]}
               </td>
-              <td class={sortBy == "Sp. Defense" ? "activeCell" : ""}>
+              <td class={sortBy === "Sp. Defense" ? "activeCell" : ""}>
                 {base["Sp. Defense"]}
               </td>
-              <td class={sortBy == "Speed" ? "activeCell" : ""}>
+              <td class={sortBy === "Speed" ? "activeCell" : ""}>
                 {base["Speed"]}
               </td>
             </tr>
@@ -171,7 +137,6 @@ const PokemonTable = () => {
 };
 
 function App() {
-  const filter = useStore((state) => state.filter);
   const setPokemon = useStore((state) => state.setPokemon);
   const setLoading = useStore((state) => state.setLoading);
 
@@ -187,6 +152,7 @@ function App() {
   return (
     <div className="App">
       <h1>Pokemon Exploradora</h1>
+      <a href="https://github.com/nqthqn/pokemon-exploradora">Source Code</a>
       <div class="filters">
         <FilterInput />
         <DropdownInput />
